@@ -3,6 +3,7 @@ int pirPin = 7; // HC-S501 pin
 
 int pirValue;
 
+long time = 0;
 
 void setup() {
   
@@ -12,11 +13,21 @@ void setup() {
   digitalWrite(ledPin, LOW);
   
   
+  Serial.begin(9600);
   
 }
 
 void loop() {
+  
   pirValue = digitalRead(pirPin);
-  digitalWrite(ledPin, pirValue);
 
+  if(millis() >= 60000){
+    
+    digitalWrite(ledPin, pirValue);
+	Serial.print(pirValue);
+  }else if(millis() == time){
+
+    time += 1000;
+    Serial.println(millis());
+  }
 }
