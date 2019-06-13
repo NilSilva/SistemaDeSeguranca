@@ -1,27 +1,28 @@
-int ledPin = 4;  // LED pin
-int pirPin = 7; // HC-S501 pin
-int buttonPin = 2; //button pin
+//--Constantes--
+//definição dos pins
+const int LED_PIN = 4;  // LED pin
+const int PIR_PIN = 7; // HC-S501 pin
+const int BUTTON_PIN = 2; //button pin
 
+//definição dos estados
+const int ESPERAR = 0;// espera durante 60 segundos
+const int DETETAR = 1;// le dados do sensor
+const int DETETOU = 2;// detetou movimento
+const int PYTHON = 3;// envia dados para o python
+
+//--Variaveis--
 long time = 0;
-
 int pirValue;
-
 int x = 0;
 int button = 1;
-
-const int esperar = 0;
-const int detetar = 1;
-const int detetou = 2;
-const int python = 3;
-
-int state = esperar;
+int state = ESPERAR;
 
 void setup() {
 
-  pinMode(ledPin, OUTPUT);
-  pinMode(pirPin, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(PIR_PIN, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(buttonPin), butt, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), butt, RISING);
 
   Serial.begin(9600);
 }
@@ -29,51 +30,39 @@ void setup() {
 void loop() {
 
   switch (state) {
-    case esperar:
+    case ESPERAR:
 
-      /*if(x == 0){
-
-        Serial.println("A inicializar...");
-        x = 1;
-        }*/
-      
       time = millis();
-      digitalWrite(ledPin, LOW);
+      digitalWrite(LED_PIN, LOW);
       while (millis() - time < 60000);
-      digitalWrite(ledPin, HIGH);
+      digitalWrite(LED_PIN, HIGH);
 
-      //Serial.println("Inicialização completada");
-
-      state = detetar;
+      state = DETETAR;
       break;
-    case detetar:
+    case DETETAR:
 
-      pirValue = digitalRead(pirPin);
+      pirValue = digitalRead(PIR_PIN);
 
       if (pirValue == 1) {
 
-        //Serial.println("Movimento detetado");
-        state = detetou;
+        state = DETETOU;
       } else {
 
-        state = detetar;
+        state = DETETAR;
       }
       break;
-    case detetou:
+    case DETETOU:
 
 
       time = millis();
-      digitalWrite(ledPin, LOW);
+      digitalWrite(LED_PIN, LOW);
       while (millis() - time < 30000);
-      digitalWrite(ledPin, HIGH);
-      //Serial.println("Enviar dados para o python");
-      x = 0;
-      state = python;
+      state = PYTHON;
       break;
-    case python:
+    case PYTHON:
 
       Serial.println(button);
-      state = esperar;
+      state = ESPERAR;
       button = 1;
       break;
   }
@@ -81,7 +70,7 @@ void loop() {
 
 void butt() {
 
-  if (state == detetou) {
+  if (state == DETETOU) {
 
     time = 0;
     button = 0;

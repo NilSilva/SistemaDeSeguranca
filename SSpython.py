@@ -40,7 +40,7 @@ pirValue = -1
 
 url = 'http://api.thingspeak.com/update?api_key=18UCXEIIBBDNJDQ5&field1='
 
-print(time.asctime( time.localtime(time.time()) ))
+print(time.asctime(time.localtime(time.time())))
 
 while(True):
 
@@ -51,17 +51,13 @@ while(True):
 	pirValue = int(v3[0])
 	
 	print(pirValue)
-	
-	localtime = time.asctime( time.localtime(time.time()) )
-	
+	print(time.asctime(time.localtime(time.time())))
 	if pirValue == 0:
-		#f = urllib.request.urlopen(url +str(localtime))
-		print(localtime)
-		#f.read()
-		#f.close()
+		f = urllib.request.urlopen(url + str(pirValue))
+		f.read()
+		f.close()
 	elif pirValue ==1:
-		#f = urllib.request.urlopen(url +str(localtime))
-		print(localtime)
-		#f.read()
-		#f.close()
+		f = urllib.request.urlopen(url + str(pirValue))
+		f.read()
+		f.close()
 		enviaMail()
