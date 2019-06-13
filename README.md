@@ -6,7 +6,7 @@ Mesmo assim a informação desse movimento vai ser colocada no ThingSpeak.
 
 ## Usado na programação
 
-* [Pyhon3.7.3](https://www.python.org/downloads/) - A linguagem usada para enviar email e colocar dados no ThingSpeak.
+* [Pyhon3.7.3](https://www.python.org/downloads/) - A linguagem usada para enviar email e colocar dados no [ThingSpeak](https://thingspeak.com/channels/797038).
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software) - Usado para controlar o arduino e o sensor de movimento.
 
 ## Authors
