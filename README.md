@@ -9,6 +9,14 @@ Mesmo assim a informação desse movimento vai ser colocada no ThingSpeak.
 * [Pyhon3.7.3](https://www.python.org/downloads/) - A linguagem usada para enviar email e colocar dados no [ThingSpeak](https://thingspeak.com/channels/797038).
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software) - Usado para controlar o arduino e o sensor de movimento.
 
+## Circuito e esquematica
+
+Circuito:
+<img src="Circuito.png" width="1000" />
+
+Esquematica:
+<img src="esquematica.png" width="1000" />
+
 ## Authors
 
 * **[Nil Silva](https://github.com/NilSilva)** - *1700774*
