@@ -13,7 +13,6 @@ const int PYTHON = 3;// envia dados para o python
 //--Variaveis--
 long time = 0;
 int pirValue;
-int x = 0;
 int button = 1;
 int state = ESPERAR;
 
